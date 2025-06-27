@@ -86,7 +86,7 @@ matplotlib-inline==0.1.6
 mccabe==0.7.0
 mdurl==0.1.2
 mistune==3.0.2
-multidict==6.0.4
+multidict==6.0.2
 mypy-extensions==1.0.0
 nbclient==0.9.0
 nbconvert==7.12.0
@@ -174,5 +174,5 @@ webencodings==0.5.1
 websocket-client==1.7.0
 widgetsnbextension==4.0.9
 yarg==0.1.9
-yarl==1.9.2
+yarl==1.8.1
 zipp==3.17.0
