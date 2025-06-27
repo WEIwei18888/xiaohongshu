@@ -9,18 +9,15 @@ from typing import List
 # 定义结构化输出模型
 class XiaoHongShu(BaseModel):
     title: List[str] = Field(
-        default_factory=list,
-        description="生成5个不同风格的小红书标题，每个标题需包含emoji和关键词，长度控制在15-25字"
+        description="生成5个不同风格的小红书标题，每个标题需包含emoji和关键词，长度控制在15-25字",
+        min_items=5,
+        max_items=5
     )
     content: str = Field(
-        default="",
         description="一篇完整的小红书正文，需包含痛点引入、亮点描述、使用体验，结尾有互动引导"
     )
 
 
-# 创建解析器
-output_parser = PydanticOutputParser(pydantic_object=XiaoHongShu)
-parser_instructions = output_parser.get_format_instructions()
 
 #通用System Prompt - 包含解析指令和写作指南
 system_template_text = """
@@ -145,10 +142,14 @@ def generate_copywriting(openai_api_key, content_type, user_input):
         ("human", human_templates_text[content_type])
     ])
 
+    # 创建解析器
+    output_parser = PydanticOutputParser(pydantic_object=XiaoHongShu)
+    parser_instructions = output_parser.get_format_instructions()
+
     #创建链
     chain = prompt_template|model|output_parser
 
-    # Combine user_input with parser_instructions for the invoke call
+    # Combine user_input with parser_instructions for the invoke call 将user_input这个字典和parser_instructions 结合，形成一个新的传入invoke的字典
     full_input = {**user_input, "parser_instructions": parser_instructions}
 
     #获得回复

@@ -140,17 +140,17 @@ if generate_button:
 
     # 显示错误信息
     if missing_fields:
-        field_text = "、".join(missing_fields)
+        field_text = "、".join(missing_fields)#把列表转换成字符串
         st.info(f"请填写以下必填信息：{field_text}！")
     else:
-        with spinner("AI正在思考中，请稍等..."):
+        with spinner("AI正在努力创作中，请稍等..."):
             response = generate_copywriting(opneai_api_key, content_type, user_input)
 
         #显示标题
-        st.subheader("🌟 生成的5个标题")
+        st.markdown("#### 🌟 生成的5个标题")
         for i, title in enumerate(response.title):
-            st.write(f"**标题{i+1}**：{title}")
+            st.markdown(f"**标题{i+1}**：{title}")
 
         # 显示正文
-        st.subheader("📝 完整正文内容")
-        st.write(response.content)
+        st.markdown("#### 📝 完整正文内容")
+        st.markdown(response.content)
