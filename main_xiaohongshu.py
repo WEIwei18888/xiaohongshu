@@ -121,7 +121,7 @@ with st.form("input_form"):
 
 #生成文案逻辑
 if generate_button and not opneai_api_key:
-    st.error("请输入你的Open AI密钥！！！")
+    st.info("请输入你的Open AI密钥！！！")
     st.stop()
 if generate_button:
     # 定义每种内容类型的必填字段
@@ -141,7 +141,7 @@ if generate_button:
     # 显示错误信息
     if missing_fields:
         field_text = "、".join(missing_fields)
-        st.error(f"请填写以下必填信息：{field_text}！")
+        st.info(f"请填写以下必填信息：{field_text}！")
     else:
         with spinner("AI正在思考中，请稍等..."):
             response = generate_copywriting(opneai_api_key, content_type, user_input)
@@ -149,7 +149,7 @@ if generate_button:
         #显示标题
         st.subheader("🌟 生成的5个标题")
         for i, title in enumerate(response.title):
-            st.write(f"**标题{i}**：{title}")
+            st.write(f"**标题{i+1}**：{title}")
 
         # 显示正文
         st.subheader("📝 完整正文内容")
