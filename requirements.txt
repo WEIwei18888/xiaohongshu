@@ -153,7 +153,6 @@ statsmodels==0.14.0
 streamlit==1.28.2
 tenacity==8.2.3
 terminado==0.18.0
-tiktoken==0.6.0
 tinycss2==1.2.1
 toml==0.10.2
 tomlkit==0.12.3
